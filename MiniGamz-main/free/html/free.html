@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        header p {
+            margin: 5px 0 0;
+            color: gray;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        thead {
+            background-color: #f8f8f8;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .notice {
+            background-color: #fff3cd;
+        }
+        
+        .ad {
+            background-color: #d1ecf1;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .fa-2x {
+            font-size: 2em;
+            }
+            .fa {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size:20px;
+            }
+            
+            
+            .main-menu:hover,nav.main-menu.expanded {
+            width:250px;
+            overflow:visible;
+            }
+            
+            .main-menu {
+            background:#ffcc00;
+            border-right:1px solid #e5e5e5;
+            position:absolute;
+            top:0;
+            bottom:0;
+            height:100%;
+            left:0;
+            width:60px;
+            overflow:hidden;
+            -webkit-transition:width .05s linear;
+            transition:width .05s linear;
+            -webkit-transform:translateZ(0) scale(1,1);
+            z-index:1000;
+            }
+            
+            .main-menu>ul {
+            margin:7px 0;
+            }
+            
+            .main-menu li {
+            position:relative;
+            display:block;
+            width:250px;
+            }
+            
+            .main-menu li>a {
+            position:relative;
+            display:table;
+            border-collapse:collapse;
+            border-spacing:0;
+            color:#999;
+             font-family: arial;
+            font-size: 14px;
+            text-decoration:none;
+            -webkit-transform:translateZ(0) scale(1,1);
+            -webkit-transition:all .1s linear;
+            transition:all .1s linear;
+              
+            }
+            
+            .main-menu .nav-icon {
+            position:relative;
+            display:table-cell;
+            width:60px;
+            height:36px;
+            text-align:center;
+            vertical-align:middle;
+            font-size:18px;
+            }
+            
+            .main-menu .nav-text {
+            position:relative;
+            display:table-cell;
+            vertical-align:middle;
+            width:190px;
+              font-family: 'Titillium Web', sans-serif;
+            }
+            
+            .main-menu>ul.logout {
+            position:absolute;
+            left:0;
+            bottom:0;
+            }
+            
+            .no-touch .scrollable.hover {
+            overflow-y:hidden;
+            }
+            
+            .no-touch .scrollable.hover:hover {
+            overflow-y:auto;
+            overflow:visible;
+            }
+            
+            a:hover,a:focus {
+            text-decoration:none;
+            }
+            
+            nav {
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            -o-user-select:none;
+            user-select:none;
+            }
+            
+            nav ul,nav li {
+            outline:0;
+            margin:0;
+            padding:0;
+            }
+            .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+            color:#000000;
+            background-color:#fefbd5;
+            }
+            .area {
+            float: left;
+            background: #e2e2e2;
+            width: 100%;
+            height: 100%;
+            }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유게시판</title>
+</head>
+<body>
+    <nav class="main-menu">
+        <ul>
+            <li class="has-subnav">
+                <a href="/">
+                    <i class="fa fa-2x">MENU</i>
+                    <span class="nav-text">
+                        홈
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="community.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        커뮤니티
+                    </span>
+                </a>
+            </li>
+            </li>
+            <li class="has-subnav">
+                <a href="profile.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        프로필
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="ranking.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        랭킹게시판
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="pic.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        사진게시판
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="free.html">
+                    <i class="fa fa-2x"></i>
+                    <span class="nav-text">
+                        자유게시판
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="inquiry.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        문의 게시판
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">Documentation</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="logout">
+            <li>
+               <a href="#">
+                     <i class="fa fa-2x"></i>
+                    <span class="nav-text">
+                        <div class="auth">
+                            <ul id="authMenu">
+                                <li><a href="login.html" id="loginLink">로그인</a></li>
+                                <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                            </ul>
+                        </div>
+                    </span>
+                </a>
+            </li>  
+        </ul>
+    </nav>
+</body>
+    <div class="container">
+        <header>
+            <h1>자유게시판</h1>
+            <p>미풍양속을 해치지 않는 범위 내에서 자유롭게 작성해주세요.</p>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>등록일</th>
+                    <th>추천</th>
+                    <th>조회</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="notice">
+                    <td>공지</td>
+                    <td>[필독] 제목에는 특수 문자 사용을 절대 금지합니다. - 2010년 2월 24일</td>
+                    <td>운영자</td>
+                    <td>10/10/24</td>
+                    <td>0</td>
+                    <td>4324677</td>
+                </tr>
+                <tr class="ad">
+                    <td>AD</td>
+                    <td>공식인증 혜택최대보장 전제품</td>
+                    <td>렌탈_싸다구</td>
+                    <td>22/10/04</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>8822821</td>
+                    <td>[영상] 홍길동에서 나온 카리스마 눈물</td>
+                    <td>조선사나이</td>
+                    <td>01:02:27</td>
+                    <td>0</td>
+                    <td>128</td>
+                </tr>
+                <!-- 추가적인 행들을 여기에 작성하세요 -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

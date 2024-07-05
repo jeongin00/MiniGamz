@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minion-bird</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Comic+Neue:wght@300;400;700&display=swap">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">
+                    <h2>Mini Gamz</h2>
+                </a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="community.html">커뮤니티</a></li>
+                    <li><a href="inquiry.html">문의 게시판</a></li>
+                    <li><a href="#" id="profileLink">프로필</a></li>
+                    <li><a href="shop.html">아이템샵</a></li>
+                </ul>
+            </div>
+            <div class="auth">
+                <ul id="authMenu">
+                    <li><a href="login.html" id="loginLink">로그인</a></li>
+                    <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                </ul>
+            </div>
+        </nav>
+        </div>
+    </header>
+    <div id="mainContent">
+        <button id="mainButton">뒤로 가기</button>
+        <canvas id="gameCanvas" width="600" height="500"></canvas>
+        <div id="buttons">
+            <button id="startButton">게임 시작</button>
+            <button id="pauseButton" style="display: none;">
+                <img src="img/pause.png" alt="Pause" style="width: 30px; height: 30px;">
+            </button>
+            <button id="resumeButton" style="display: none;">
+                <img src="img/resume.png" alt="Resume" style="width: 30px; height: 30px;">
+            </button>
+            <button id="restartButton" style="display: none;">
+                <img src="img/restart.png" alt="Restart" style="width: 30px; height: 30px;">
+            </button>
+        </div>
+    </div>
+    <div class="instructions-box" id="instructionsBox">
+        <div class="instructions-header">
+            <h2>조작법</h2>
+            <span id="toggleButton" onclick="toggleInstructions()">&#9660;</span> 
+        </div>
+        <div class="instructions-content" id="instructionsContent">
+            <p>
+                - 스페이스 바 또는 ↑ 키를 눌러 점프<br>
+                - 장애물에 부딪히면 탈락!<br>
+                - 점점빨라지는 속도를 극복하고 최고 점수에 도달하세요~!
+            </p>
+            <img src="images/baseball.gif" alt="미니언 야구" class="instructions-image">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function checkLoginStatus() {
+                fetch('/api/profile')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.nickname) {
+                            isLoggedIn = true;
+                            document.getElementById('authMenu').innerHTML = `
+                                <li class="auth-profile">
+                                    <img src="${data.profileImage}" alt="Profile Image" class="profile-image">
+                                    <span>${data.nickname} (${data.points} 점)</span>
+                                </li>
+                            `;
+                            document.getElementById('logoutLink').addEventListener('click', logout);
+                        } else {
+                            isLoggedIn = false;
+                            document.getElementById('authMenu').innerHTML = `
+                                <li><a href="login.html" id="loginLink">로그인</a></li>
+                                <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('로그인 상태 확인 중 오류 발생:', error);
+                    });
+            }
+            checkLoginStatus();
+        });
+    </script>
+    <script src="game.js"></script>
+</body>
+</html>

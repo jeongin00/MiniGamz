@@ -1,0 +1,52 @@
+/* 테이블 스타일 */
+#datatablesSimple {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: left;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+/* 테이블 헤더 스타일 */
+#datatablesSimple thead {
+    background-color: #333;
+    color: #fff;
+}
+
+#datatablesSimple thead th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* 테이블 푸터 스타일 */
+#datatablesSimple tfoot {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+#datatablesSimple tfoot th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* 테이블 본문 스타일 */
+#datatablesSimple tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#datatablesSimple tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#datatablesSimple tbody td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* 행 호버 스타일 */
+#datatablesSimple tbody tr:hover {
+    background-color: #eaeaea;
+}

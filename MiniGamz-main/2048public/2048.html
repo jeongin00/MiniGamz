@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./2048.css">
+    <title>2048</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">
+                    <h2>Mini Gamz</h2>
+                </a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="community.html">커뮤니티</a></li>
+                    <li><a href="inquiry.html">문의 게시판</a></li>
+                    <li><a href="#" id="profileLink">프로필</a></li>
+                    <li><a href="shop.html">아이템샵</a></li>
+                </ul>
+            </div>
+            <div class="auth">
+                <ul id="authMenu">
+                    <li><a href="login.html" id="loginLink">로그인</a></li>
+                    <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                </ul>
+            </div>
+        </nav>
+        </div>
+    </header>
+    <div id="game-container" class="hidden">
+        <div class="boardLine" id="firstBoardLine">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
+        <div class="boardLine" id="secondBoardLine">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
+        <div class="boardLine" id="thirdBoardLine">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
+        <div class="boardLine" id="fourthBoardLine">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
+        <h4 id="score">Score :</h4>
+        <div id="gameover-container" class="hidden">
+            <h1>Game Over</h1>
+            <button id="retryButton" onclick="retryGame()">Retry</button>
+        </div>
+    </div>
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="./2048music/background.mp3" type="audio/mpeg">
+    </audio>
+    <div class="instructions-box" id="instructionsBox">
+        <div class="instructions-header">
+            <h2>규칙</h2>
+            <span id="toggleButton" onclick="toggleInstructions()">&#9660;</span> 
+        </div>
+        <div class="instructions-content" id="instructionsContent">
+            <p>
+                -방향키로 조작<br>
+                - 같은 숫자를 합치세요!<br>
+                - 합쳐진 숫자는 두배커짐!<br>
+                - 최대한 큰수를 만들어 공간을 확보하세요!<br>
+                - 더이상 못움직이면 탈락!<br>
+            </p>
+            <img src="images/baseball.gif" alt="미니언 야구" class="instructions-image">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function checkLoginStatus() {
+                fetch('/api/profile')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.nickname) {
+                            isLoggedIn = true;
+                            document.getElementById('authMenu').innerHTML = `
+                                <li class="auth-profile">
+                                    <img src="${data.profileImage}" alt="Profile Image" class="profile-image">
+                                    <span>${data.nickname} (${data.points} 점)</span>
+                                </li>
+                            `;
+                            document.getElementById('logoutLink').addEventListener('click', logout);
+                        } else {
+                            isLoggedIn = false;
+                            document.getElementById('authMenu').innerHTML = `
+                                <li><a href="login.html" id="loginLink">로그인</a></li>
+                                <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('로그인 상태 확인 중 오류 발생:', error);
+                    });
+            }
+            checkLoginStatus();
+        });
+      </script>
+    <script src="./2048.js"></script>
+</body>
+</html>

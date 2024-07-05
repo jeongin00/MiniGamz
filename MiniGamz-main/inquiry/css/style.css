@@ -1,0 +1,72 @@
+body {
+    font-family: "Gamja Flower", sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    background-size: cover;
+}
+
+h1 {
+    margin: 20px 0;
+    color: #ffcc00;
+    text-shadow: 2px 2px #000;
+    display: inline-block;
+    position: relative;
+}
+
+h1::before {
+    content: "";
+    background: url('/images/icon.png') no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+table {
+    margin: 20px auto;
+    width: 80%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #ffcc00;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff9900;
+}
+
+form {
+    display: inline;
+}
+
+#newPostForm {
+    margin: 20px auto;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}

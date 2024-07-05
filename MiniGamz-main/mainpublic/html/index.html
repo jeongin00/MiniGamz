@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 S/W 팀 프로젝트</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower" rel="stylesheet">
+    <style>
+        .logo a {
+            text-decoration: none; /* 추가 */
+        }    
+        .logo h2 {
+            margin: 0;
+            font-family: "Gamja Flower", sans-serif;
+            cursor: pointer;
+            color: black; /* 프로필 파일의 디자인을 반영 */
+        }
+        .auth-profile {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .auth-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        .auth {
+            display: flex;
+            align-items: center; /* 모든 자식 요소를 수직 가운데 정렬 */
+        }
+
+        .auth ul {
+            display: flex;
+            align-items: center; /* 모든 리스트 아이템을 수직 가운데 정렬 */
+            margin: 0;
+            padding: 0;
+        }
+
+        .auth li {
+            list-style: none;
+            margin: 0 10px;
+        }
+        .menu a, .auth a {
+            color: black;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+        .menu a:hover, .auth a:hover {
+            background-color: #555;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">
+                    <h2>Mini Gamz</h2>
+                </a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="community.html">커뮤니티</a></li>
+                    <li><a href="inquiry.html">문의 게시판</a></li>
+                    <li><a href="#" id="profileLink">프로필</a></li>
+                    <li><a href="shop.html">아이템숍</a></li>
+                </ul>
+            </div>
+            <div class="auth">
+                <ul id="authMenu">
+                    <li><a href="login.html" id="loginLink">로그인</a></li>
+                    <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="minion-header">
+            <img src="/images/minionfull3.jpg" alt="Minion Header Image">
+            <div class="text-overlay">
+                <h1>MiniGamz</h1>
+                <h1>MiniGamz</h1>
+            </div>
+        </div>
+    </header>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <main>
+        <div class="content-section hidden">
+            <ul class="ch-grid">
+                <li>
+                    <div class="ch-item">
+                        <div class="ch-info" onclick="location.href='baseball.html'">
+                            <div class="ch-info-front">
+                                <img src="/images/baseball.png" alt="야구게임" style="width: 100%; height: auto;">
+                                <h4 style="margin-top: 0;">숫자 야구!</h4>
+                            </div>
+                            <div class="ch-info-back">
+                                <img src="/images/banana.png" style="width: 90%; height: 190px;">
+                                <h4 style="margin-top: 0;">game start!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ch-item">
+                        <div class="ch-info" onclick="location.href='minionbird.html'">
+                            <div class="ch-info-front">
+                                <img src="/images/minionbird.png" alt="미니언버드" style="width: 100%; height: auto;">
+                                <h4 style="margin-top: 0;">미니언 버드!</h4>
+                            </div>
+                            <div class="ch-info-back">
+                                <img src="/images/banana.png" style="width: 90%; height: 190px;">
+                                <h4 style="margin-top: 0;">game start!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ch-item">
+                        <div class="ch-info" onclick="location.href='shooting.html'">
+                            <div class="ch-info-front">
+                                <img src="/images/shooting.png" alt="슈팅게임" style="width: 100%; height: auto;">
+                                <h4 style="margin-top: 0;">슈팅게임!</h4>
+                            </div>
+                            <div class="ch-info-back">
+                                <img src="/images/banana.png" style="width: 90%; height: 190px;">
+                                <h4 style="margin-top: 0;">game start!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ch-item">
+                        <div class="ch-info" onclick="location.href='minionjump.html'">
+                            <div class="ch-info-front">
+                                <img src="/images/minionjumppage.png" alt="미니언점프게임" style="width: 100%; height: auto;">
+                                <h4 style="margin-top: 0;">미니언 점핑!</h4>
+                            </div>
+                            <div class="ch-info-back">
+                                <img src="/images/banana.png" style="width: 90%; height: 190px;">
+                                <h4 style="margin-top: 0;">game start!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ch-item">
+                        <div class="ch-info" onclick="location.href='2048.html'">
+                            <div class="ch-info-front">
+                                <img src="/images/2048.png" alt="2048" style="width: 100%; height: auto;">
+                                <h4 style="margin-top: 0;">2048</h4>
+                            </div>
+                            <div class="ch-info-back">
+                                <img src="/images/banana.png" style="width: 90%; height: 190px;">
+                                <h4 style="margin-top: 0;">game start!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ch-item">
+                        <div class="ch-info" onclick="location.href='minionrun.html'">
+                            <div class="ch-info-front">
+                                <img src="/images/minionrunpage.png" alt="미니언러닝게임" style="width: 100%; height: auto;">
+                                <h4 style="margin-top: 0;">미니언 러닝!</h4>
+                            </div>
+                            <div class="ch-info-back">
+                                <img src="/images/banana.png" style="width: 90%; height: 190px;">
+                                <h4 style="margin-top: 0;">game start!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ch-item">
+                        <div class="ch-info" onclick="location.href='minionrun.html'">
+                            <div class="ch-info-front">
+                                <img src="/images/ready.png" alt="준비중" style="width: 100%; height: auto;">
+                                <h4 style="margin-top: 0;">준비중...</h4>
+                            </div>
+                            <div class="ch-info-back">
+                                <img src="/images/ready.png" style="width: 90%; height: 190px;">
+                                <h4 style="margin-top: 0;">준비중입니다.</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ch-item">
+                        <div class="ch-info" onclick="location.href='minionrun.html'">
+                            <div class="ch-info-front">
+                                <img src="/images/ready.png" alt="준비중" style="width: 100%; height: auto;">
+                                <h4 style="margin-top: 0;">준비중..</h4>
+                            </div>
+                            <div class="ch-info-back">
+                                <img src="/images/ready.png" style="width: 90%; height: 190px;">
+                                <h4 style="margin-top: 0;">준비중입니다</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--커뮤니티-->
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="container">
+            <div class="content-section hidden" id="community">
+                <img src="/images/twomini.png" alt="고정 이미지" style="width: 40%; display: block; margin: auto;">
+                <h2 style="margin-bottom: 20px; padding-left: 10px;">커뮤니티</h2>
+                <div class="post" style="margin-bottom: 20px;">
+                    <h3>게시물 제목</h3>
+                    <p>내용</p>
+                </div>
+                <div class="post">
+                    <h3>게시물 제목</h3>
+                    <p>내용</p>
+                </div>
+            </div>
+            <!--문의 게시판-->
+            <div class="content-section hidden" id="inquiry">
+                <div class="inquiry form">
+                    <img src="/images/threemini.png" alt="고정 이미지" style="width: 50%; display: block; margin: auto; margin-top: -55px;">
+                    <h1 style="margin-bottom: 20px; padding-left: 10px;">문의 게시판</h1>
+                    <form id="inquiry-form">
+                        <div class="input-group" style="margin-bottom: 20px;">
+                            <input type="text" placeholder="이름" name="name" id="name" required style="font-size: 24px;">
+                        </div>
+                        <div class="input-group"style="margin-bottom: 20px;">
+                            <input type="email" placeholder="이메일" name="email" id="email" required style="font-size: 24px;">
+                        </div>
+                        <div class="input-group"style="margin-bottom: 20px;">
+                            <textarea placeholder="문의 내용" name="message" id="message" rows="4" required style="font-size: 24px;"></textarea>
+                        </div>
+                        <button type="submit" style="width: 100px; font-size: 16px;">제출</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div id="toggle-chat" class="chat-container">
+            <section id="chat">
+                <h2>라이브 채팅</h2>
+                <ul id="messages"></ul>
+                <form id="chat-form">
+                    <input id="username" type="text" placeholder="유저명" readonly required>
+                    <input id="chat-message" type="text" placeholder="메시지 입력" required>
+                    <button type="submit">전송</button>
+                </form>
+            </section>
+        </div>
+        <!--라이브 채팅 닫기 새로고침 시 두 번 눌러야 닫힘 수정필요 -->
+        <button id="toggle-chat-btn" data-open-text="라이브 채팅 열기">닫기</button> 
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script>
+        let isLoggedIn = false; //라이브채팅시 로그인여부 확인
+
+        function checkLoginStatus() {
+            fetch('/api/profile')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.nickname) {
+                        isLoggedIn = true;
+                        document.getElementById('authMenu').innerHTML = `
+                            <li class="auth-profile">
+                                <img src="${data.profileImage}" alt="Profile Image">
+                                <span>${data.nickname} (${data.points} 점)</span>
+                            </li>
+                            <li><a href="#" id="logoutLink">로그아웃</a></li>
+                        `;
+                        document.getElementById('logoutLink').addEventListener('click', logout);
+                        document.getElementById('username').value = data.nickname;
+                    } else {
+                        isLoggedIn = false;
+                        document.getElementById('authMenu').innerHTML = `
+                            <li><a href="login.html" id="loginLink">로그인</a></li>
+                            <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('로그인 상태 확인 중 오류 발생:', error);
+                });
+        }
+
+        function showLoginPopup() { //라이브채팅 로그인필요할시 팝업
+            alert('로그인이 필요합니다.');
+            window.location.href = 'login.html';
+        }
+        
+
+        function logout() {
+            fetch('/logout', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/';
+                    } else {
+                        console.error('로그아웃 실패');
+                    }
+                })
+                .catch(error => {
+                    console.error('로그아웃 중 오류 발생:', error);
+                });
+        }
+
+        function redirectToProfile() {
+            fetch('/api/profile')
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = 'profile.html';
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('프로필 확인 중 오류 발생:', error);
+                    window.location.href = 'login.html';
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // 기존 기능
+            checkLoginStatus();
+            document.getElementById('profileLink').addEventListener('click', redirectToProfile);
+
+            // 애니메이션 효과 적용
+            const sections = document.querySelectorAll('.content-section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            // 라이브 채팅창 토글 기능 추가
+        });
+        
+
+    </script>
+</body>
+</html>
+

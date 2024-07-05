@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGamez - Admin(사용자 DB)</title>
+    <link rel="stylesheet" href="/admin/css/user-list.css">
+    <script src="/admin/js/fetchTableData.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Admin Page로 돌아가는 링크 -->
+        <div class="back-to-admin">
+            <a href="/admin">admin page로..</a>
+        </div>
+        <h1>users Table</h1>
+        <!-- 드롭다운 메뉴와 검색 입력 필드 -->
+        <div class="search-container">
+            <select id="searchCategory">
+                <option value="id">ID</option>
+                <option value="password">PW</option>
+                <option value="name">Name</option>
+                <option value="nickname">Nickname</option>
+                <option value="highschool">Highschool</option>
+                <option value="person">Person</option>
+                <option value="alias">Alias</option>
+                <option value="travel">Travel</option>
+                <option value="movie">Movie</option>
+                <option value="points">Points</option>
+                <option value="profileImage">Profile Image</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="검색어를 입력해 주세요." />
+        </div>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>PW</th>
+                    <th>Name</th>
+                    <th>Nickname</th>
+                    <th>Highschool</th>
+                    <th>Person</th>
+                    <th>Alias</th>
+                    <th>Travel</th>
+                    <th>Movie</th>
+                    <th>Points</th>
+                    <th>Profile Image</th>
+                </tr>
+            </thead>
+            <tfoot>
+            </tfoot>
+            <tbody>
+                <!-- 동적 추가되는 곳 -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

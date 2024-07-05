@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MiniGamez - 아이디 및 비밀번호 찾기</title>
+    <link rel="stylesheet" href="/css/jstyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <img src="/images/daelong.png" alt="Minions" class="minions">
+        <div class="form-wrapper">
+            <div class="form">
+                <h1>아이디 및 비밀번호 찾기</h1>
+                <form id="recoveryForm">
+                    <div class="input-group" id="nameGroup">
+                        <i class='bx bxs-user'></i>
+                        <input type="text" placeholder="이름" name="name" required>
+                    </div>
+                    <div class="input-group" id="questionGroup">
+                        <label for="securityQuestion">본인 확인 질문을 선택하세요</label>
+                        <select id="securityQuestion" name="securityQuestion" onchange="setAnswerInputName()">
+                            <option value="highschool">출신 고등학교 이름은 무엇인가요?</option>
+                            <option value="person">어렸을 때 존경했던 인물은 누구인가요?</option>
+                            <option value="alias">어릴 적 별명은 무엇이었나요?</option>
+                            <option value="travel">가장 인상 깊었던 여행지는 어디인가요?</option>
+                            <option value="movie">가장 좋아하는 영화는 무엇인가요?</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="securityAnswerGroup">
+                        <i class='bx bxs-lock-alt'></i>
+                        <input type="text" id="securityAnswer" placeholder="질문의 답변을 입력하세요" name="highschool">
+                    </div>
+                    <div class="input-group hidden" id="idFieldGroup">
+                        <i class='bx bxs-user'></i>
+                        <input type="text" placeholder="아이디" name="id" id="idField">
+                    </div>
+                    <p>
+                        <input type="radio" name="recoveryType" value="id" onclick="toggleFields(false)" required checked> 아이디 찾기
+                        <input type="radio" name="recoveryType" value="password" onclick="toggleFields(true)" required> 비밀번호 찾기
+                    </p>
+                    <button type="button" onclick="submitForm()">찾기</button>
+                </form>
+                <div id="result"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleFields(showPasswordFields) {
+            var questionGroup = document.getElementById('questionGroup');
+            var securityAnswerGroup = document.getElementById('securityAnswerGroup');
+            var idFieldGroup = document.getElementById('idFieldGroup');
+
+            if (showPasswordFields) {
+                questionGroup.classList.add('hidden');
+                securityAnswerGroup.classList.add('hidden');
+                idFieldGroup.classList.remove('hidden');
+                document.getElementById('idField').setAttribute('required', 'required');
+            } else {
+                questionGroup.classList.remove('hidden');
+                securityAnswerGroup.classList.remove('hidden');
+                idFieldGroup.classList.add('hidden');
+                document.getElementById('idField').removeAttribute('required');
+            }
+        }
+
+        function setAnswerInputName() {
+            var questionSelect = document.getElementById('securityQuestion');
+            var selectedQuestion = questionSelect.value;
+            var answerInput = document.getElementById('securityAnswer');
+            answerInput.name = selectedQuestion;
+        }
+
+        function submitForm() {
+            const form = document.getElementById('recoveryForm');
+            const formData = new FormData(form);
+            const recoveryType = formData.get('recoveryType');
+            const url = recoveryType === 'id' ? '/process/findid' : '/process/findpassword';
+
+            const data = Object.fromEntries(formData);
+            data.securityQuestion = document.getElementById('securityQuestion').value;
+            data.securityAnswer = document.getElementById('securityAnswer').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                if (data.success) {
+                    if (recoveryType === 'id') {
+                        resultDiv.innerHTML = `아이디는 ${data.id}입니다.`;
+                    } else {
+                        resultDiv.innerHTML = `비밀번호는 ${data.password}입니다.`;
+                    }
+                } else {
+                    resultDiv.innerHTML = data.message;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        // 기본 상태 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('input[name="recoveryType"][value="id"]').checked = true;
+            toggleFields(false);
+        });
+    </script>
+</body>
+</html>

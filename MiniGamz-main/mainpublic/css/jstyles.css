@@ -1,0 +1,191 @@
+:root {
+    --primary-color: #ffd200;
+    --secondary-color: #ffcc00;
+    --black: #000000;
+    --white: #ffffff;
+    --gray: #efefef;
+    --gray-2: #757575;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+* {
+    font-family: "Gamja Flower", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100vh; /* Changed from height: 100vh */
+    overflow: auto; /* Changed from overflow: hidden */
+}
+
+.container {
+    position: relative;
+    min-height: 100vh; /* Changed from height: 100vh */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+}
+
+.form-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 20px;  /*본인 확인 질문*/
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: var(--gray-2);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem 3rem;
+    font-size: 25px;       /*폰트 크기변경*/
+    background-color: var(--gray);
+    border-radius: .5rem;
+    border: 0.125rem solid var(--white);
+    outline: none;
+}
+
+.input-group input:focus {
+    border: 0.125rem solid var(--primary-color);
+}
+
+.form button {
+    cursor: pointer;
+    width: 100%;
+    padding: .6rem 0;
+    border-radius: .5rem;
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    font-size: 1.8rem;
+    outline: none;
+}
+.adduser1 {
+    position: absolute;
+    top: 70%;
+    right: -310px; /* 폼 오른쪽에 배치 */
+    width: 310px; /* 이미지 너비 조정 */
+    transform: translateY(-50%);
+}
+.adduser2 {
+    position: absolute;
+    top: 29.5%;
+    right: 360px; /* 폼 오른쪽에 배치 */
+    width: 425px; /* 이미지 너비 조정 */
+    transform: translateY(-50%);
+}
+.adduser3 {
+    position: absolute;
+    top: 86.5%;
+    right: 360px; /* 폼 오른쪽에 배치 */
+    width: 425px; /* 이미지 너비 조정 */
+    transform: translateY(-50%);
+}
+.minion {
+    position: absolute;
+    top: -214px;
+    left: 50%;
+    width: 268px; /* 로그인 미니언의 크기 조절 */
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.minions {
+    position: absolute;
+    top: 0px;
+    left: 33%;
+    width: 150px; /* 미니언의 크기 조절 */
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.password-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1, p {
+    text-align: center;
+}
+
+
+#idCheckResult {
+    font-weight: bold;
+}
+
+#idCheckResult.duplicate {
+    color: red;
+}
+
+#idCheckResult.not_duplicate {
+    color: blue;
+}
+
+particule {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    box-shadow: 1px 1px 4px #eb6383;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: scale(2) rotate(60deg);
+        opacity: 0;
+    }
+}
+
+@keyframes bump-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}

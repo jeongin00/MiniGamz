@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery with Sidebar and Ratings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tran: all 0.5s ease 0s;
+            --dark: #1c2429;
+            --back: #1d659f;
+            --bg-light: #e2e2e2;
+        }
+
+        * { outline: none; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            background: var(--bg-light);
+            font-family: 'Gamja Flower', sans-serif;
+        }
+
+        .area {
+            float: left;
+            background: var(--bg-light);
+            width: 100%;
+            height: 100%;
+            padding-left: 60px;
+        }
+
+        #filter-form label {
+            display: inline-block;
+            margin-right: 30px; /* 각 체크박스 사이의 간격 조정 */
+        }
+
+        .category-labels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .fa-2x {
+            font-size: 2em;
+        }
+
+        .fa {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size:20px;
+        }
+
+        .main-menu:hover,nav.main-menu.expanded {
+            width:250px;
+            overflow:visible;
+        }
+
+        .main-menu {
+            background:#ffcc00;
+            border-right:1px solid #e5e5e5;
+            position:absolute;
+            top:0;
+            bottom:0;
+            height:100%;
+            left:0;
+            width:60px;
+            overflow:hidden;
+            -webkit-transition:width .05s linear;
+            transition:width .05s linear;
+            -webkit-transform:translateZ(0) scale(1,1);
+            z-index:1000;
+        }
+
+        .main-menu>ul {
+            margin:7px 0;
+        }
+
+        .main-menu li {
+            position:relative;
+            display:block;
+            width:250px;
+        }
+
+        .main-menu li>a {
+            position:relative;
+            display:table;
+            border-collapse:collapse;
+            border-spacing:0;
+            color:#999;
+            font-family: arial;
+            font-size: 14px;
+            text-decoration:none;
+            -webkit-transform:translateZ(0) scale(1,1);
+            -webkit-transition:all .1s linear;
+            transition:all .1s linear;
+        }
+
+        .main-menu .nav-icon {
+            position:relative;
+            display:table-cell;
+            width:60px;
+            height:36px;
+            text-align:center;
+            vertical-align:middle;
+            font-size:18px;
+        }
+
+        .main-menu .nav-text {
+            position:relative;
+            display:table-cell;
+            vertical-align:middle;
+            width:190px;
+            font-family: 'Titillium Web', sans-serif;
+        }
+
+        .main-menu>ul.logout {
+            position:absolute;
+            left:0;
+            bottom:0;
+        }
+
+        .no-touch .scrollable.hover {
+            overflow-y:hidden;
+        }
+
+        .no-touch .scrollable.hover:hover {
+            overflow-y:auto;
+            overflow:visible;
+        }
+
+        a:hover,a:focus {
+            text-decoration:none;
+        }
+
+        nav {
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            -o-user-select:none;
+            user-select:none;
+        }
+
+        nav ul,nav li {
+            outline:0;
+            margin:0;
+            padding:0;
+        }
+
+        .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+            color:#000000;
+            background-color:#fefbd5;
+        }
+
+        .area {
+            float: left;
+            background: #e2e2e2;
+            width: 100%;
+            height: 100%;
+        }
+
+        #filter-form {
+            margin: 20px 0;
+        }
+
+        #upload-section {
+            margin: 20px 0;
+        }
+
+        #images-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        #images-section article {
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #images-section img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .star-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stars label {
+            cursor: pointer;
+        }
+
+        .auth {
+            display: inline-block;
+        }
+
+        .auth ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .auth ul li {
+            display: inline;
+        }
+
+        .auth ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        #loginModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #loginModal form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #loginModal input[type="text"],
+        #loginModal input[type="password"] {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #loginModal button {
+            padding: 10px;
+            background: #1d659f;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #loginModal button:hover {
+            background: #14548a;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: #ffcc00;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .header i {
+            font-size: 3em;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <i class="fa fa-2x">MENU</i>
+    
+    <nav class="main-menu">
+        <ul>
+            <li class="has-subnav">
+                <a href="/">
+                    <i class="fa fa-2x">MENU</i>
+                    <span class="nav-text">
+                        홈
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="community.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        커뮤니티
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="profile.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        프로필
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="ranking.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        랭킹게시판
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="inquiry.html">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">
+                        문의 게시판
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">Documentation</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="logout">
+            <li>
+                <a href="#">
+                    <i class="fa fa-2x"></i>
+                    <span class="nav-text">
+                        <div class="auth">
+                            <ul id="authMenu">
+                                <li><a href="login.html" id="loginLink">로그인</a></li>
+                            </ul>
+                        </div>
+                    </span>
+                </a>
+            </li>  
+        </ul>
+    </nav>
+
+    <div class="area">
+        <div class="header">
+            <i class="fa fa-camera"></i>
+            <h1>사진게시판</h1>
+        </div>
+        <section>
+            <form id="filter-form">
+                <p>카테고리별 보기:</p>
+                <div class="category-labels">
+                    <label>
+                        <input type="checkbox" name="전체보기" id="전체보기" checked />전체보기
+                    </label>
+                    <label>
+                        <input type="checkbox" name="숫자야구" />숫자야구
+                    </label>
+                    <label>
+                        <input type="checkbox" name="미니언버드" />미니언버드
+                    </label>
+                    <label>
+                        <input type="checkbox" name="슈팅게임" />슈팅게임
+                    </label>
+                    <label>
+                        <input type="checkbox" name="미니언점핑" />미니언점핑
+                    </label>
+                    <label>
+                        <input type="checkbox" name="2048" />2048
+                    </label>
+                    <label>
+                        <input type="checkbox" name="미니언러닝" />미니언러닝
+                    </label>
+                </div>
+            </form>
+            <div id="upload-section">
+                <h3>사진 업로드</h3>
+                <form id="upload-form" enctype="multipart/form-data">
+                    <input type="text" name="title" placeholder="사진제목입력" required />
+                    <input type="file" name="image" accept="image/*" required />
+                    <select name="category" required>
+                        <option value="숫자야구">숫자야구</option>
+                        <option value="미니언버드">미니언버드</option>
+                        <option value="슈팅게임">슈팅게임</option>
+                        <option value="미니언점핑">미니언점핑</option>
+                        <option value="2048">2048</option>
+                        <option value="미니언러닝">미니언러닝</option>
+                    </select>
+                    <button type="submit">Upload</button>
+                </form>
+            </div>
+            <div id="images-section">
+                <!-- Images will be displayed here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal">
+        <form id="login-form">
+            <h2>로그인</h2>
+            <input type="text" name="username" placeholder="Username" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function checkLoginStatus() {
+            fetch('/api/profile')
+                .then(response => response.json())
+                .then(data => {
+                    const authMenu = document.getElementById('authMenu');
+                    if (data.nickname) {
+                        authMenu.innerHTML = `
+                            <li><a href="#" id="logoutLink">로그아웃</a></li>
+                        `;
+                        document.getElementById('logoutLink').addEventListener('click', logout);
+                    } else {
+                        authMenu.innerHTML = `
+                            <li><a href="login.html" id="loginLink">로그인</a></li>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('로그인 상태를 확인하는 중 오류가 발생했습니다:', error);
+                });
+        }
+
+        document.getElementById('upload-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.text())
+            .then(data => {
+                alert('업로드가 완료되었습니다.');
+                loadImages();
+            }).catch(error => {
+                alert('업로드 중 오류가 발생했습니다.');
+            });
+        });
+
+        document.getElementById('filter-form').addEventListener('change', function(e) {
+            const checkboxes = document.querySelectorAll('#filter-form input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox !== e.target) {
+                    checkbox.checked = false;
+                }
+            });
+            e.target.checked = true;
+            loadImages();
+        });
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'block';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function loadImages() {
+            fetch('/images')
+            .then(response => response.json())
+            .then(images => {
+                const selectedCategory = document.querySelector('#filter-form input[type="checkbox"]:checked').name;
+                const imagesSection = document.getElementById('images-section');
+                imagesSection.innerHTML = '';
+                images.filter(image => selectedCategory === '전체보기' || image.category === selectedCategory).forEach(image => {
+                    const article = document.createElement('article');
+                    article.innerHTML = `
+                        <img src="${image.image_url}" alt="${image.category}" onclick="openLightbox('${image.image_url}')" />
+                        <h2>${image.title}</h2>
+                        <p class="categories" data-category="${image.category}">${image.category}</p>
+                        <div class="star-rating" data-image-id="${image.id}">
+                            <div class="stars">
+                                <label class="number"><input type="radio" name="rating-${image.id}" value="0"></label>
+                                <label class="star"><input type="radio" name="rating-${image.id}" value="1"></label>
+                                <label class="star"><input type="radio" name="rating-${image.id}" value="2"></label>
+                                <label class="star"><input type="radio" name="rating-${image.id}" value="3"></label>
+                                <label class="star"><input type="radio" name="rating-${image.id}" value="4"></label>
+                                <label class="star"><input type="radio" name="rating-${image.id}" value="5"></label>
+                                <div class="number-rating">${image.rating}</div>
+                            </div>
+                        </div>
+                    `;
+                    imagesSection.appendChild(article);
+                });
+            }).catch(error => {
+                alert('이미지를 불러오는 중 오류가 발생했습니다.');
+            });
+        }
+
+        document.addEventListener('change', function(e) {
+            if (e.target.name.startsWith('rating-')) {
+                const rating = e.target.value;
+                const imageId = e.target.closest('.star-rating').dataset.imageId;
+                const userId = 'user-id-here'; // 실제 사용자 ID로 변경
+                fetch('/rate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ imageId, rating, userId })
+                }).then(response => response.text())
+                .then(data => {
+                    alert('평가가 완료되었습니다.');
+                    loadImages();
+                }).catch(error => {
+                    alert('평가 중 오류가 발생했습니다.');
+                });
+            }
+        });
+
+        document.getElementById('loginLink')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('loginModal').style.display = 'block';
+        });
+
+        document.getElementById('login-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('/login', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.text())
+            .then(data => {
+                alert('로그인이 완료되었습니다.');
+                document.getElementById('loginModal').style.display = 'none';
+                checkLoginStatus();
+            }).catch(error => {
+                alert('로그인 중 오류가 발생했습니다.');
+            });
+        });
+
+        document.getElementById('logoutLink')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            fetch('/logout').then(response => response.text())
+            .then(data => {
+                alert('로그아웃이 완료되었습니다.');
+                checkLoginStatus();
+            }).catch(error => {
+                alert('로그아웃 중 오류가 발생했습니다.');
+            });
+        });
+
+        checkLoginStatus();
+        loadImages();
+    </script>
+</body>
+</html>

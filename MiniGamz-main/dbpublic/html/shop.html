@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGamez - 아이템숍</title>
+    <link rel="stylesheet" href="css/shop.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        /* 버튼 스타일 추가 */
+        .profile-image-selector .item button {
+            width: 140px; /* 버튼의 너비를 고정 */
+            height: 40px; /* 버튼의 높이를 고정 */
+            text-align: center; /* 텍스트를 가운데 정렬 */
+            white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
+        }
+
+        /* 구매 완료 버튼 스타일 */
+        .profile-image-selector .item button.completed {
+            background-color: gray; /* 구매 완료 버튼의 배경색 변경 */
+            cursor: not-allowed; /* 커서를 변경하여 클릭할 수 없음을 나타냄 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">
+                    <h2>Mini Gamz</h2>
+                </a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="community.html">커뮤니티</a></li>
+                    <li><a href="inquiry.html">문의 게시판</a></li>
+                    <li><a href="profile.html">프로필</a></li>
+                    <li><a href="shop.html">아이템숍</a></li>
+                </ul>
+            </div>
+            <div class="auth">
+                <ul id="authMenu">
+                    <li><a href="login.html" id="loginLink">로그인</a></li>
+                    <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>아이템샵</h1>
+        <div class="profile-image-selector">
+            <div class="item locked" data-img="/images/1.webp">
+                <img src="/images/1.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/1.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/2.webp">
+                <img src="/images/2.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/2.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/3.webp">
+                <img src="/images/3.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/3.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/4.webp">
+                <img src="/images/4.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/4.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/5.webp">
+                <img src="/images/5.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/5.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/6.webp">
+                <img src="/images/6.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/6.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/7.webp">
+                <img src="/images/7.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/7.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/8.webp">
+                <img src="/images/8.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/8.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/9.webp">
+                <img src="/images/9.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/9.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/10.webp">
+                <img src="/images/10.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/10.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/11.webp">
+                <img src="/images/11.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/11.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/12.webp">
+                <img src="/images/12.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/12.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/13.webp">
+                <img src="/images/13.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/13.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/14.webp">
+                <img src="/images/14.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/14.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/15.webp">
+                <img src="/images/15.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/15.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/16.webp">
+                <img src="/images/16.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/16.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/17.webp">
+                <img src="/images/17.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/17.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/18.webp">
+                <img src="/images/18.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/18.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/19.webp">
+                <img src="/images/19.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/19.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/20.webp">
+                <img src="/images/20.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/20.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/21.webp">
+                <img src="/images/21.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/21.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/22.webp">
+                <img src="/images/22.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/22.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/23.webp">
+                <img src="/images/23.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/23.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/24.webp">
+                <img src="/images/24.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/24.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/25.webp">
+                <img src="/images/25.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/25.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/26.webp">
+                <img src="/images/26.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/26.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/27.webp">
+                <img src="/images/27.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/27.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/28.webp">
+                <img src="/images/28.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/28.webp', 100)">구매 (100포인트)</button>
+            </div>
+            <div class="item locked" data-img="/images/29.webp">
+                <img src="/images/29.webp" alt="coin">
+                <button data-cost="100" onclick="purchaseItem(this, 'image', '/images/29.webp', 100)">구매 (100포인트)</button>
+            </div>
+        </div>
+    </main>
+    <script src="/js/shop.js"></script>
+</body>

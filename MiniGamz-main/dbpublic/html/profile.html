@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGamez - 프로필</title>
+    <link rel="stylesheet" href="/css/pro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        .grayscale {
+            filter: grayscale(100%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">
+                    <h2>Mini Gamz</h2>
+                </a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="community.html">커뮤니티</a></li>
+                    <li><a href="inquiry.html">문의 게시판</a></li>
+                    <li><a href="#" id="profileLink">프로필</a></li>
+                    <li><a href="shop.html">아이템숍</a></li>
+                </ul>
+            </div>
+            <div class="auth">
+                <ul id="authMenu">
+                    <li><a href="login.html" id="loginLink">로그인</a></li>
+                    <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <h2>사용자 프로필</h2>
+            <img id="profileImage" src="/images/bob.webp" alt="Profile Image">
+            <div class="details">
+                <p><strong>이름:</strong> <span id="userName"></span></p>
+                <p><strong>아이디:</strong> <span id="userId"></span></p>
+                <p><strong>닉네임:</strong> <span id="userNickname"></span></p> 
+                <p><strong>포인트:</strong> <span id="userPoints"></span></p>
+            </div>
+            <div class="change-password-container">
+                <h3>비밀번호 변경</h3>
+                <form id="changePasswordForm" onsubmit="return validatePassword()">
+                    <div class="password-container">
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" id="newPassword" name="password" placeholder="새 비밀번호" pattern="[A-Za-z0-9]{4,15}" title="패스워드는 4~15자리의 영어와 숫자만 가능합니다." minlength="4" maxlength="15" required>
+                            <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+                        </div>
+                    </div>
+                    <button type="submit">변경</button>
+                </form>
+            </div>
+            <div class="profile-image-selector">
+                <h3>프로필 사진 선택</h3>
+                <div id="profileImages">
+                    <!-- 기본 프로필 이미지 -->
+                    <img src="/images/bob.webp" alt="Profile Image Bob" onclick="selectProfileImage('/images/bob.webp')">
+                    <img src="/images/dave.webp" alt="Profile Image Dave" onclick="selectProfileImage('/images/dave.webp')">
+                    <img src="/images/kevin.webp" alt="Profile Image Kevin" onclick="selectProfileImage('/images/kevin.webp')">
+                    <img src="/images/mel.webp" alt="Profile Image Mel" onclick="selectProfileImage('/images/mel.webp')">
+                    <img src="/images/stuart.webp" alt="Profile Image Stuart" onclick="selectProfileImage('/images/stuart.webp')">
+                    
+                    <!-- 구매해야 하는 프로필 이미지 -->
+                    <img src="/images/1.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/1.webp')">
+                    <img src="/images/2.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/2.webp')">
+                    <img src="/images/3.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/3.webp')">
+                    <img src="/images/4.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/4.webp')">
+                    <img src="/images/5.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/5.webp')">
+                    <img src="/images/6.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/6.webp')">
+                    <img src="/images/7.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/7.webp')">
+                    <img src="/images/8.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/8.webp')">
+                    <img src="/images/9.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/9.webp')">
+                    <img src="/images/10.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/10.webp')">
+                    <img src="/images/11.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/11.webp')">
+                    <img src="/images/12.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/12.webp')">
+                    <img src="/images/13.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/13.webp')">
+                    <img src="/images/14.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/14.webp')">
+                    <img src="/images/15.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/15.webp')">
+                    <img src="/images/16.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/16.webp')">
+                    <img src="/images/17.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/17.webp')">
+                    <img src="/images/18.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/18.webp')">
+                    <img src="/images/19.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/19.webp')">
+                    <img src="/images/20.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/20.webp')">
+                    <img src="/images/21.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/21.webp')">
+                    <img src="/images/22.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/22.webp')">
+                    <img src="/images/23.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/23.webp')">
+                    <img src="/images/24.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/24.webp')">
+                    <img src="/images/25.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/25.webp')">
+                    <img src="/images/26.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/26.webp')">
+                    <img src="/images/27.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/27.webp')">
+                    <img src="/images/28.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/28.webp')">
+                    <img src="/images/29.webp" alt="purchase" class="purchasable" onclick="promptPurchase('/images/29.webp')">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/js/pro.js"></script>
+</body>
+</html>

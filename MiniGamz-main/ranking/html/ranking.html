@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미니겜즈 랭킹</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            background-color: #ffeb3b;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        header {
+            background-color: #fdd835;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1001; /* Ensures the header is above the menu */
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #3e2723;
+            margin: 0;
+            text-shadow: 2px 2px #ffeb3b;
+        }
+
+        main {
+            width: calc(100% - 60px); /* Adjust to fit menu */
+            margin-top: 120px; /* Adjust for header height */
+            background-color: rgba(255, 235, 59, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-left: 60px; /* Adjust this margin to fit the menu */
+            box-sizing: border-box;
+        }
+
+        #rankingList {
+            width: 100%;
+        }
+
+        .ranking-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .ranking-item:hover {
+            transform: scale(1.02);
+        }
+
+        .rank {
+            font-size: 2em;
+            font-weight: bold;
+            margin-right: 20px;
+            width: 50px;
+            text-align: center;
+        }
+
+        .profile {
+            margin-right: 20px;
+        }
+
+        .profile-img {
+            max-width: 50px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .info {
+            flex-grow: 1;
+        }
+
+        .nickname {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .points {
+            font-size: 1.2em;
+            color: #757575;
+        }
+
+        .rank-1 .rank {
+            color: gold;
+        }
+
+        .rank-2 .rank {
+            color: silver;
+        }
+
+        .rank-3 .rank {
+            color: #cd7f32;
+        }
+
+        footer {
+            background-color: #fdd835;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+            color: #3e2723;
+            font-size: 1em;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            main {
+                width: 100%;
+                margin-left: 60px;
+            }
+        }
+
+        /* Side menu styles */
+        .fa-2x {
+            font-size: 2em;
+        }
+        .fa {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+        .main-menu:hover, nav.main-menu.expanded {
+            width: 250px;
+            overflow: visible;
+        }
+        .main-menu {
+            background: #ffcc00;
+            border-right: 1px solid #e5e5e5;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            width: 60px;
+            overflow: hidden;
+            -webkit-transition: width .05s linear;
+            transition: width .05s linear;
+            -webkit-transform: translateZ(0) scale(1, 1);
+            z-index: 1000;
+        }
+        .main-menu > ul {
+            margin: 7px 0;
+            padding-top: 60px; /* Adjust to fit below the header */
+        }
+        .main-menu li {
+            position: relative;
+            display: block;
+            width: 250px;
+        }
+        .main-menu li > a {
+            position: relative;
+            display: table;
+            border-collapse: collapse;
+            border-spacing: 0;
+            color: #999;
+            font-family: arial;
+            font-size: 14px;
+            text-decoration: none;
+            -webkit-transform: translateZ(0) scale(1, 1);
+            -webkit-transition: all .1s linear;
+            transition: all .1s linear;
+        }
+        .main-menu .nav-icon {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 18px;
+        }
+        .main-menu .nav-text {
+            position: relative;
+            display: table-cell;
+            vertical-align: middle;
+            width: 190px;
+            font-family: 'Titillium Web', sans-serif;
+        }
+        .main-menu > ul.logout {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .no-touch .scrollable.hover {
+            overflow-y: hidden;
+        }
+        .no-touch .scrollable.hover:hover {
+            overflow-y: auto;
+            overflow: visible;
+        }
+        a:hover, a:focus {
+            text-decoration: none;
+        }
+        nav {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        nav ul, nav li {
+            outline: 0;
+            margin: 0;
+            padding: 0;
+        }
+        .main-menu li:hover > a, nav.main-menu li.active > a, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .no-touch .dashboard-page nav.dashboard-menu ul li:hover a, .dashboard-page nav.dashboard-menu ul li.active a {
+            color: #000000;
+            background-color: #fefbd5;
+        }
+        .area {
+            float: left;
+            background: #e2e2e2;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+        <nav class="main-menu">
+            <ul>
+                <li class="has-subnav">
+                    <a href="/">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">홈</span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="community.html">
+                        <i class="fa fa-users fa-2x"></i>
+                        <span class="nav-text">커뮤니티</span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="profile.html">
+                        <i class="fa fa-user fa-2x"></i>
+                        <span class="nav-text">프로필</span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="community.html">
+                        <i class="fa fa-trophy fa-2x"></i>
+                        <span class="nav-text">랭킹게시판</span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="pic.html">
+                        <i class="fa fa-picture-o fa-2x"></i>
+                        <span class="nav-text">사진게시판</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="inquiry.html">
+                        <i class="fa fa-question fa-2x"></i>
+                        <span class="nav-text">문의 게시판</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">Documentation</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="logout">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-sign-out fa-2x"></i>
+                        <span class="nav-text">
+                            <div class="auth">
+                                <ul id="authMenu">
+                                    <li><a href="login.html" id="loginLink">로그인</a></li>
+                                    <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                                </ul>
+                            </div>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    <header>
+        <h1>MiniGemz 랭킹</h1>
+    </header>
+    <main>
+        <div id="rankingList"></div>
+    </main>
+    <footer>
+        <p>© 2024 Minions Inc.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/ranking')
+                .then(response => response.json())
+                .then(data => {
+                    const rankingList = document.getElementById('rankingList');
+                    rankingList.innerHTML = '';  // Clear any existing content
+
+                    data.forEach((user, index) => {
+                        const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
+                        const profileImage = user.profileImage || '/images/default-profile.png';  // Default profile image if none is provided
+
+                        const rankingItem = document.createElement('div');
+                        rankingItem.className = `ranking-item ${rankClass}`;
+                        rankingItem.innerHTML = `
+                            <div class="rank">${index + 1}</div>
+                            <div class="profile">
+                                <img src="${profileImage}" alt="Profile Image" class="profile-img">
+                            </div>
+                            <div class="info">
+                                <div class="nickname">${user.nickname}</div>
+                                <div class="points">${user.points}</div>
+                            </div>
+                        `;
+                        rankingList.appendChild(rankingItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching ranking data:', error);
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGamez - Admin(사용자 관리)</title>
+    <link rel="stylesheet" href="/admin/css/manageUser.css">
+    <script src="/admin/js/manageUser.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="back-to-admin">
+            <a href="/admin">admin page로..</a>
+        </div>
+        <h1>사용자 관리</h1>
+        <div class="search-container">
+            <select id="searchCategory">
+                <option value="id">ID</option>
+                <option value="password">PW</option>
+                <option value="name">Name</option>
+                <option value="nickname">Nickname</option>
+                <option value="highschool">Highschool</option>
+                <option value="person">Person</option>
+                <option value="alias">Alias</option>
+                <option value="travel">Travel</option>
+                <option value="movie">Movie</option>
+                <option value="points">Points</option>
+                <option value="profileImage">Profile Image</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="검색어를 입력해 주세요.">
+            <button id="searchButton">검색</button>
+        </div>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>PW</th>
+                    <th>Name</th>
+                    <th>Nickname</th>
+                    <th>Highschool</th>
+                    <th>Person</th>
+                    <th>Alias</th>
+                    <th>Travel</th>
+                    <th>Movie</th>
+                    <th>Points</th>
+                    <th>Profile Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 데이터가 동적으로 추가됨 -->
+            </tbody>
+        </table>
+        <div class="user-actions">
+            <button id="addUserButton">사용자 추가</button>
+        </div>
+    </div>
+
+    <!-- 사용자 추가/수정 폼 -->
+    <div id="userFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>사용자 정보</h2>
+            <form id="userForm">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" required>
+                <label for="password">PW:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="nickname">Nickname:</label>
+                <input type="text" id="nickname" name="nickname" required>
+                <label for="highschool">Highschool:</label>
+                <input type="text" id="highschool" name="highschool">
+                <label for="person">Person:</label>
+                <input type="text" id="person" name="person">
+                <label for="alias">Alias:</label>
+                <input type="text" id="alias" name="alias">
+                <label for="travel">Travel:</label>
+                <input type="text" id="travel" name="travel">
+                <label for="movie">Movie:</label>
+                <input type="text" id="movie" name="movie">
+                <label for="points">Points:</label>
+                <input type="number" id="points" name="points">
+                <label for="profileImage">Profile Image URL:</label>
+                <input type="text" id="profileImage" name="profileImage">
+                <input type="submit" value="저장">
+            </form>
+        </div>
+    </div>
+
+    <!-- 삭제 확인 모달 -->
+    <div id="deleteConfirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>사용자 삭제</h2>
+            <p>정말로 삭제하시겠습니까?</p>
+            <button id="confirmDeleteButton">삭제</button>
+            <button id="cancelDeleteButton">취소</button>
+        </div>
+    </div>
+</body>
+</html>

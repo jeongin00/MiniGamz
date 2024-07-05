@@ -1,0 +1,175 @@
+body {
+    font-family: 'Gamja Flower', cursive;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header {
+    width: 100%;
+    background-color: #FFD700; /* 노란색 배경 */
+    margin: 0; /* 여백 제거 */
+    padding: 0; /* 패딩 제거 */
+}
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* 전체 너비 사용 */
+    margin: 0;
+    padding: 0; /* 패딩 제거 */
+}
+.logo a {
+    text-decoration: none;
+}    
+.logo h2 {
+    margin: 0;
+    font-family: "Gamja Flower", sans-serif;
+    cursor: pointer;
+    color: black;
+}
+.menu ul, .auth ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.menu li, .auth li {
+    margin: 0 10px;
+}
+.menu a, .auth a {
+    color: black;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+.menu a:hover, .auth a:hover {
+    background-color: #555;
+    color: white;
+}
+.auth-profile {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.auth-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+.auth {
+    display: flex;
+    align-items: center;
+}
+.auth ul {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.auth li {
+    list-style: none;
+    margin: 0 10px;
+}
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.profile-container {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 50px;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+}
+.profile-container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+.profile-container .details p {
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+.change-password-container {
+    margin-top: 30px;
+}
+.password-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+}
+.password-container .input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.password-container .input-group i {
+    margin-right: 10px;
+}
+.password-container .input-group input {
+    padding: 15px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.password-container .input-group .toggle-password {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+}
+.change-password-container button {
+    padding: 15px 30px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.change-password-container button:hover {
+    background-color: #555;
+}
+.profile-image-selector {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.profile-image-selector img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.profile-image-selector img:hover {
+    transform: scale(1.1);
+}
+
+
+
+
+
+.grayscale {
+    filter: grayscale(100%);
+}
+.clickable {
+    cursor: pointer;
+}

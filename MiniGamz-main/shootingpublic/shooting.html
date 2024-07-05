@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shooting Game</title>
+  <link rel="stylesheet" href="shootingstyle.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Comic+Neue:wght@300;400;700&display=swap">
+  <style>
+    #startButton {
+      padding: 20px 40px;
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* Main button style */
+    #mainButton {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="/">
+                <h2>Mini Gamz</h2>
+            </a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="community.html">커뮤니티</a></li>
+                <li><a href="inquiry.html">문의 게시판</a></li>
+                <li><a href="#" id="profileLink">프로필</a></li>
+                <li><a href="shop.html">아이템샵</a></li>
+            </ul>
+        </div>
+        <div class="auth">
+            <ul id="authMenu">
+                <li><a href="login.html" id="loginLink">로그인</a></li>
+                <li><a href="signup.html" id="signupLink">회원가입</a></li>
+            </ul>
+        </div>
+    </nav>
+    </div>
+</header>
+  <!-- Main button HTML -->
+  <button id="mainButton">Main</button>
+  <button id="startButton">Game Start</button>
+  <canvas id="gameCanvas" style="display:none;"></canvas>
+  <audio id="backgroundMusic" src="music/background.mp3" loop></audio>
+  <script src="shootinggame.js"></script>
+  <div class="instructions-box" id="instructionsBox">
+    <div class="instructions-header">
+        <h2>규칙</h2>
+        <span id="toggleButton" onclick="toggleInstructions()">&#9660;</span> 
+    </div>
+    <div class="instructions-content" id="instructionsContent">
+        <p>
+            - 다가오는 적을 피하거나 파괴!<br>
+            - 좌우 방향키로 이동<br>
+            - 총알:레이저가 2배 빨리 발사 &nbsp;&nbsp;&nbsp;됩니다!<br>
+            &nbsp;  (최대2개 보유가능)<br>
+            - 물약:체력 한칸 회복!
+        </p>
+        <img src="images/baseball.gif" alt="미니언 야구" class="instructions-image">
+    </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      function checkLoginStatus() {
+          fetch('/api/profile')
+              .then(response => response.json())
+              .then(data => {
+                  if (data.nickname) {
+                      isLoggedIn = true;
+                      document.getElementById('authMenu').innerHTML = `
+                          <li class="auth-profile">
+                              <img src="${data.profileImage}" alt="Profile Image" class="profile-image">
+                              <span>${data.nickname} (${data.points} 점)</span>
+                          </li>
+                      `;
+                      document.getElementById('logoutLink').addEventListener('click', logout);
+                  } else {
+                      isLoggedIn = false;
+                      document.getElementById('authMenu').innerHTML = `
+                          <li><a href="login.html" id="loginLink">로그인</a></li>
+                          <li><a href="signup.html" id="signupLink">회원가입</a></li>
+                      `;
+                  }
+              })
+              .catch(error => {
+                  console.error('로그인 상태 확인 중 오류 발생:', error);
+              });
+      }
+      checkLoginStatus();
+  });
+</script>
+</body>
+</html>
+
